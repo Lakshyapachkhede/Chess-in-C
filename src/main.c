@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
 
     // game loop
-    Game_loop(renderer, &matrix);
+    Game_loop(renderer, matrix);
 
     // freeing up resources
     Board_freeBoard(matrix);

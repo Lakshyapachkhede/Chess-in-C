@@ -27,4 +27,11 @@ typedef struct
     SDL_Texture *img;
 } Piece;
 
+typedef struct 
+{
+    int i, j;
+} Move;
+
+
+
 #endif

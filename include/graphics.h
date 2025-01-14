@@ -10,4 +10,7 @@ void Graphics_renderTexture(SDL_Renderer *renderer, SDL_Texture *texture, SDL_Re
 void Graphics_presentScreen(SDL_Renderer *renderer);
 SDL_Texture *Graphics_getTextureFromPath(SDL_Renderer *renderer, char *path);
 
+void Graphics_drawRect(SDL_Renderer *renderer, SDL_Color color, SDL_Rect *rect);
+void Graphics_fillRect(SDL_Renderer *renderer, SDL_Color color, SDL_Rect *rect);
+
 #endif // GRAPHICS_H

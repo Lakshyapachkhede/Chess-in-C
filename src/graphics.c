@@ -6,14 +6,16 @@ int Graphics_GetWindowRenderer(SDL_Window **window, SDL_Renderer **renderer)
 {
     *window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
 
-    if (!window) {
+    if (!window)
+    {
         SDL_Log("Failed to create window: %s", SDL_GetError());
         return -1;
     }
 
     *renderer = SDL_CreateRenderer(*window, -1, SDL_RENDERER_ACCELERATED);
 
-    if (!renderer) {
+    if (!renderer)
+    {
         SDL_Log("Failed to create renderer: %s", SDL_GetError());
         return -1;
     }
@@ -23,11 +25,13 @@ int Graphics_GetWindowRenderer(SDL_Window **window, SDL_Renderer **renderer)
 
 void Graphics_FreeWindowRenderer(SDL_Window *window, SDL_Renderer *renderer)
 {
-    if (window != NULL) {
+    if (window != NULL)
+    {
         SDL_DestroyWindow(window);
     }
 
-    if (renderer != NULL) {
+    if (renderer != NULL)
+    {
         SDL_DestroyRenderer(renderer);
     }
 }
@@ -60,3 +64,16 @@ SDL_Texture *Graphics_getTextureFromPath(SDL_Renderer *renderer, char *path)
     return texture;
 }
 
+void Graphics_drawRect(SDL_Renderer *renderer, SDL_Color color, SDL_Rect *rect)
+{
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 255);
+    SDL_RenderDrawRect(renderer, rect);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+}
+
+void Graphics_fillRect(SDL_Renderer *renderer, SDL_Color color, SDL_Rect *rect)
+{
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 255);
+    SDL_RenderFillRect(renderer, rect);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+}
