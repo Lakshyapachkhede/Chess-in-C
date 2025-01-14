@@ -9,8 +9,10 @@
 void Board_DrawBoard(SDL_Renderer *renderer)
 {
 
-    SDL_Color light_color = {234, 232, 210, 255};
-    SDL_Color dark_color = {75, 114, 152, 255};
+    SDL_Color light_color = LIGHT_COLOR;
+    SDL_Color dark_color = DARK_COLOR;
+
+
     for (int i = 0; i < ROWS; i++)
     {
         for (int j = 0; j < COLS; j++)

@@ -49,6 +49,11 @@ int Piece_getPawnMoves(Piece ***matrix, int i, int j, Move moves[])
 
     int direction = (piece->color == WHITE) ? -1 : 1;
 
+    if ((piece->color == WHITE && i == 0) || (piece->color == BLACK && i == 7))
+    {   
+        SDL_Log("Implement pawn promotion");
+        return 0; // Todo implement pawn promotion
+    }
     // One Step
     if (i + direction >= 0 &&
         i + direction < ROWS &&
@@ -62,7 +67,7 @@ int Piece_getPawnMoves(Piece ***matrix, int i, int j, Move moves[])
         (piece->color == BLACK && i == 1))
     {
 
-        if (matrix[i + 2 * direction][j] == NULL)
+        if (matrix[i + 2 * direction][j] == NULL && matrix[i + direction][j] == NULL)
             moves[moveCount++] = (Move){i + 2 * direction, j};
     }
 
@@ -80,5 +85,14 @@ int Piece_getPawnMoves(Piece ***matrix, int i, int j, Move moves[])
         moves[moveCount++] = (Move){i + direction, j + 1};
     }
 
+
     return moveCount;
+}
+
+int Piece_getRookMoves(Piece ***matrix, int i, int j, Move moves[])
+{
+    int moveCount = 0;
+    Piece *piece = matrix[i][j];
+
+    
 }

@@ -12,4 +12,14 @@
 #define WIDTH (COLS * TILE_SIZE)
 #define HEIGHT (ROWS * TILE_SIZE)
 
+#define LIGHT_COLOR {234, 232, 210, 255}
+#define DARK_COLOR {75, 114, 152, 255}
+#define SELECT_COLOR {230,220,157, 255}
+#define OPTIONS_COLOR {222,238,255, 255}
+
+
+
+
+
+
 #endif
