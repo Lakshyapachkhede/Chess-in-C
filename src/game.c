@@ -20,6 +20,9 @@ void Game_loop(SDL_Renderer *renderer, Piece ***matrix)
 
     bool pieceSelected = false;
 
+    matrix[4][4] = Piece_createPiece(renderer, WHITE, ROOK);
+    matrix[4][5] = Piece_createPiece(renderer, BLACK, BISHOP);
+
     while (run)
     {
         // Input
@@ -80,7 +83,7 @@ void Game_loop(SDL_Renderer *renderer, Piece ***matrix)
         {
             SDL_Rect rect = {i * TILE_SIZE, j * TILE_SIZE, TILE_SIZE, TILE_SIZE};
             Graphics_fillRect(renderer, (SDL_Color)SELECT_COLOR, &rect);
-            Game_drawSelectedPieceMoves(renderer, moves, numberOfMoves);
+            Game_drawSelectedPieceMoves(renderer, moves, numberOfMoves, matrix);
         }
 
         Board_DisplayPieces(matrix, renderer);
@@ -91,12 +94,16 @@ void Game_loop(SDL_Renderer *renderer, Piece ***matrix)
     }
 }
 
-void Game_drawSelectedPieceMoves(SDL_Renderer *renderer, Move moves[], int numberOfMoves)
+void Game_drawSelectedPieceMoves(SDL_Renderer *renderer, Move moves[], int numberOfMoves, Piece ***matrix)
 {
     for (int k = 0; k < numberOfMoves; k++)
-    {
+    {   
         SDL_Rect drect = {moves[k].j * TILE_SIZE, moves[k].i * TILE_SIZE, TILE_SIZE, TILE_SIZE};
-        Graphics_fillRect(renderer, (SDL_Color)OPTIONS_COLOR, &drect);
+
+        if (matrix[moves[k].i][moves[k].j] != NULL)
+            Graphics_fillRect(renderer, (SDL_Color)CAPTURE_COLOR, &drect);
+        else
+            Graphics_fillRect(renderer, (SDL_Color)OPTIONS_COLOR, &drect);
     }
 }
 

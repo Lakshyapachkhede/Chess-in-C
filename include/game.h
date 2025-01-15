@@ -6,7 +6,7 @@
 #include "stdbool.h"
 
 void Game_loop(SDL_Renderer *renderer, Piece ***matrix);
-void Game_drawSelectedPieceMoves(SDL_Renderer *renderer, Move moves[], int numberOfMoves);
+void Game_drawSelectedPieceMoves(SDL_Renderer *renderer, Move moves[], int numberOfMoves, Piece ***matrix);
 bool Game_checkValidMove(Move move, Move moves[], int numberOfMoves);
 void Game_movePiece(Piece ***matrix, Move startPlace, Move endPlace);
 #endif
