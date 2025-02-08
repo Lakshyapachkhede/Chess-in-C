@@ -16,6 +16,7 @@ int Piece_getRookMoves(Piece ***matrix, int i, int j, Move moves[], int existing
 int Piece_getBishopMoves(Piece ***matrix, int i, int j, Move moves[], int existingMoves);
 int Piece_getQueenMoves(Piece ***matrix, int i, int j, Move moves[]);
 int Piece_getKnightMoves(Piece ***matrix, int i, int j, Move moves[]);
+int Piece_getKingMoves(Piece ***matrix, int i, int j, Move moves[]);
 
 
 #endif 

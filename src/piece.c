@@ -1,7 +1,8 @@
 #include "piece.h"
 #include "graphics.h"
 #include "settings.h"
-#include "stdio.h"
+#include <stdio.h>
+#include <stdbool.h>
 
 Piece *Piece_createPiece(SDL_Renderer *renderer, PieceColor color, Type type)
 {
@@ -40,6 +41,8 @@ int Piece_getMoves(Piece ***matrix, int i, int j, Move moves[])
             return Piece_getQueenMoves(matrix, i, j, moves);
         case KNIGHT:
             return Piece_getKnightMoves(matrix, i, j, moves);
+        case KING:
+            return Piece_getKingMoves(matrix, i, j, moves);
         default:
             break;
         }
@@ -189,6 +192,40 @@ int Piece_getKnightMoves(Piece ***matrix, int i, int j, Move moves[])
             if (matrix[tempi][tempj] == NULL || matrix[tempi][tempj]->color != piece->color)
             {
                 moves[moveCount++] = (Move){tempi, tempj};
+            }
+        }
+    }
+
+    return moveCount;
+}
+
+bool isTileUnderAttack(Piece ***matrix, int row, int col, PieceColor kingColor)
+{
+    // TODO: Implement 
+    return false;
+}
+
+int Piece_getKingMoves(Piece ***matrix, int i, int j, Move moves[])
+{
+    int moveCount = 0;
+    Piece *piece = matrix[i][j];
+
+    int possibleMoves[8][2] = {
+        {1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
+
+    for (int k = 0; k < 8; k++)
+    {
+        int tempi = i + possibleMoves[k][0];
+        int tempj = j + possibleMoves[k][1];
+
+        if (tempi >= 0 && tempi < ROWS && tempj >= 0 && tempj < COLS)
+        {
+            if (matrix[tempi][tempj] == NULL || matrix[tempi][tempj]->color != piece->color)
+            {
+                if (!isTileUnderAttack(matrix, tempi, tempj, piece->color))
+                {
+                    moves[moveCount++] = (Move){tempi, tempj};
+                }
             }
         }
     }
